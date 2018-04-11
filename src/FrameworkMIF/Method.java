@@ -1,3 +1,4 @@
+package FrameworkMIF;
 
 public interface Method {
 

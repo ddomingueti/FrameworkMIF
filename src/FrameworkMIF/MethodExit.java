@@ -1,3 +1,4 @@
+package FrameworkMIF;
 
 public class MethodExit implements Method {
 

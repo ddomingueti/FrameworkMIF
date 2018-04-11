@@ -1,3 +1,4 @@
+package FrameworkMIF;
 
 public class Action {
 	private String name;
