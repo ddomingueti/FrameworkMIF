@@ -1,61 +1,76 @@
 import java.util.List;
 
-public class Menu extends Action {
+public class Menu extends Action implements Method {
 	
-	private String titulo;
-	private String opcao;
-	private String erro;
-	private List<Action> actions;
-	
-	
-	
-	
-	
+	private String title;
+	private String optionText;
+	private String errorText;
+	private List<Action> actionList;	
 	
 	/**
-	 * @param título
-	 * @param opcao
-	 * @param erro
+	 * @param title
+	 * @param optionText
+	 * @param errorText
 	 * @param actions
 	 */
-	public Menu(String título, String opcao, String erro, List<Action> actions) {
+	public Menu(String title, String optionText, String errorText, List<Action> actions) {
 		super();
-		this.titulo = título;
-		this.opcao = opcao;
-		this.erro = erro;
-		this.actions  = actions;
+		this.title = title;
+		this.optionText = optionText;
+		this.errorText = errorText;
+		this.actionList  = actions;
+		actionList.add(0, new Action("Sair", new MethodExit()));
+		super.setMethod(this);
+		super.setName(title);
 	}
 	
-	public Menu( String opcao, String erro, List<Action> actions) {
-		super();
-		this.opcao = opcao;
-		this.erro = erro;
-		this.actions = actions;
-		
-		this.titulo = null;
+	public String getTitle() {
+		return title;
 	}
-	
-	public Menu(String erro, List<Action> actions) {
-		super();
-		this.erro = erro;
-		this.actions = actions;
 
-		this.titulo = null;
-		this.opcao = null;
-		
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	
 
-	public void function() {
-		
+	public String getOptionText() {
+		return optionText;
 	}
-	
-	public void escolherAcao() {
-		
+
+	public void setOptionText(String optionText) {
+		this.optionText = optionText;
 	}
-	
-	public void exibErro() {
-		
+
+	public String getErrorText() {
+		return errorText;
 	}
-	
+
+	public void setErrorText(String errorText) {
+		this.errorText = errorText;
+	}
+
+	public List<Action> getActionList() {
+		return actionList;
+	}
+
+	public void setActionList(List<Action> actionList) {
+		this.actionList = actionList;
+	}
+
+	public void ShowError() {
+		System.out.println(errorText);
+	}
+
+	@Override
+	public void run() {
+		int opt = 0;
+		while (opt > 0) {
+			System.out.println(title);
+			for (int i=0; i<actionList.size(); i++) {
+				System.out.println(i + " - " + actionList.get(i).getName());
+			}
+			System.out.println(optionText);
+			//opt = read;
+		}
+		actionList.get(0).getMethod().run();
+	}
 }

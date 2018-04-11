@@ -1,6 +1,5 @@
 
-public abstract class Metodo {
+public interface Method {
 
-	
-	public abstract void executar();
+	public void run();
 }

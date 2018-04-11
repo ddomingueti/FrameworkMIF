@@ -1,9 +1,9 @@
 
-public class MethodoExit extends Metodo {
+public class MethodExit implements Method {
 
 	@Override
-	public void executar() {
-		System.exit(0);
+	public void run() {
+		System.out.println("Saindo ...");
 	}
 
 }
