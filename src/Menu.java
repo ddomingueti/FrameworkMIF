@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class Menu extends Action implements Method {
@@ -23,6 +26,8 @@ public class Menu extends Action implements Method {
 		super.setMethod(this);
 		super.setName(title);
 	}
+	
+	public Menu() { } 
 	
 	public String getTitle() {
 		return title;
@@ -63,13 +68,19 @@ public class Menu extends Action implements Method {
 	@Override
 	public void run() {
 		int opt = 0;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
 		while (opt > 0) {
 			System.out.println(title);
 			for (int i=0; i<actionList.size(); i++) {
 				System.out.println(i + " - " + actionList.get(i).getName());
 			}
 			System.out.println(optionText);
-			//opt = read;
+			try {
+				opt = Integer.parseInt(br.readLine());
+			} catch (IOException e) {
+				ShowError();
+			}
 		}
 		actionList.get(0).getMethod().run();
 	}
